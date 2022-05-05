@@ -43,18 +43,18 @@ payload.add_header('Content-Decomposition', 'attachment', filename=pdfname)
 payload2.add_header('Content-Decomposition', 'attachment', filename=pdfname2)
 
 
-with open("mails.csv") as file:
+with open("mailer.csv") as file:  #Update the name of CSV file.
     r=csv.reader(file)
     list2=list(r)
     i=1
     for mail in list2:
         message=MIMEMultipart()
-        message["from"]="Cultrang IIT Goa"
+        message["from"]="Cultrang IIT Goa"   #This will be the name of the sender shown.
         message["to"]=mail[0]
 
-        message["Subject"]="Invitation for IIT Goa's Cultural Festival, CultRang'22"
+        message["Subject"]="Invitation for IIT Goa's Cultural Festival, CultRang'22"  #Subject of the Email
 
-        body=template.substitute({"name":"Vaibhav"})
+        body=template.substitute({"name":"Nothing"})   #If the template recieves any substitute element, we can use this to send personalised mail.
         message.attach(MIMEText(body,"html"))
         # message.attach(MIMEImage(Path("Poster.png").read_bytes(),Name="Poster"))
         # message.attach(MIMEImage(Path("Talk1.png").read_bytes(),Name="Talk1"))
